@@ -1,0 +1,4 @@
+repository "colorBattleIdle@Yuryu@cloud"
+  path "/"
+    br "/main"
+    co "/main"

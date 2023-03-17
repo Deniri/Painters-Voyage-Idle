@@ -75,7 +75,7 @@ public class artCanvas : MonoBehaviour
 
 
 
-    //создание префабов арта всех
+    //creating prefabs for art
     public void CreateAllPrefab()
     {
         for(int i = 0; i < frameArtAmount; i++)
@@ -85,7 +85,7 @@ public class artCanvas : MonoBehaviour
         }
     }
 
-    //положение префабов на полотне и их активность
+    //art position and activation
     public void AllFrameArtOnCanvasPosition()
     {
         
@@ -110,7 +110,7 @@ public class artCanvas : MonoBehaviour
                 _allFrameArt[i].gameObject.SetActive(false);
             }
 
-            //стартовая позиция
+            // starting position
             if(artCanvasScale == 5)
             {
                 posXYZ.x = startPosX[0];
@@ -127,7 +127,7 @@ public class artCanvas : MonoBehaviour
                 posXYZ.y = startPosY[2];
             }
 
-            //перемещение обекта
+            //moving the object
             posXYZ.x += (0.16f * (20 / artCanvasScale)) * (i % 20);
             posXYZ.y -= (0.16f * (20 / artCanvasScale)) * (i / 20);
             _allFrameArt[i].transform.localPosition = posXYZ;
@@ -137,12 +137,12 @@ public class artCanvas : MonoBehaviour
     }
 
 
-    //призыв анимации цветов
+    //color animation
     public void StartAnimationColor(int num, int target)
     {
         int targetCur = playerManager.artLive[target];
 
-        //красный
+        //red
         if (num == 0)
         {
             for (int i = 0; i < 50; i++)
@@ -163,7 +163,7 @@ public class artCanvas : MonoBehaviour
                     }
                 }
             }
-            //рандомим вращение
+            //random rotation
             int forw = Random.Range(0, 4);
             if (forw == 0)
                 _allColor0[color0Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -173,19 +173,19 @@ public class artCanvas : MonoBehaviour
                 _allColor0[color0Cur].transform.rotation = Quaternion.Euler(0, 0, 180);
             if (forw == 3)
                 _allColor0[color0Cur].transform.rotation = Quaternion.Euler(0, 0, -90);
-            //задаём позицию
+            //setting position
             _allColor0[color0Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor0[color0Cur].transform.localScale = scaleArt;
 
-            //наносим урон
+            //dealing damage
             _allColor0[color0Cur].target = targetCur;
 
 
         }
-        //оранжевый
+        //orange
         if (num == 1)
         {
             for (int i = 0; i < 50; i++)
@@ -209,9 +209,9 @@ public class artCanvas : MonoBehaviour
 
             
 
-            //определяем движение позиции
+            //defining movement diraction
             int forw = Random.Range(0,4);
-            //вверх
+            //up
             if (forw == 0 && targetCur < artCanvasScale)
             {
                 targetCur += 20;
@@ -230,7 +230,7 @@ public class artCanvas : MonoBehaviour
             }
 
 
-            //наносим урон
+            //dealing damage
             _allColor1[color1Cur].target = targetCur;
 
             if (forw == 0)
@@ -267,15 +267,15 @@ public class artCanvas : MonoBehaviour
                 }
             }
 
-            //задаём позицию
+            //setting position
             _allColor1[color1Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor1[color1Cur].transform.localScale = scaleArt;
 
         }
-        //салатовый
+        //light green
         if (num == 2)
         {
             for (int i = 0; i < 50; i++)
@@ -297,9 +297,9 @@ public class artCanvas : MonoBehaviour
                 }
             }
 
-            //определяем движение позиции
+            //defining movement diraction
             int forw = Random.Range(0, 4);
-            //вверх право
+            //up right
             if (forw == 0)
             {
                 if((targetCur < artCanvasScale && targetCur % 20 == 0) || (targetCur / 20 == artCanvasScale - 1 && targetCur - targetCur / 20 * 20 == artCanvasScale - 1))
@@ -312,7 +312,7 @@ public class artCanvas : MonoBehaviour
                         targetCur += 19;
                 }
             }
-            //низ право
+            //down right
             if (forw == 1)
             {
                 if((targetCur - targetCur / 20 * 20 == artCanvasScale - 1 && targetCur < artCanvasScale) || (targetCur / 20 == artCanvasScale - 1 && targetCur - targetCur / 20 * 20 == 0))
@@ -325,7 +325,7 @@ public class artCanvas : MonoBehaviour
                         targetCur -= 21;
                 }
             }
-            //лево низ
+            //down left
             if (forw == 2)
             {
                 if((targetCur - targetCur / 20 * 20 == 0 && targetCur < artCanvasScale) || (targetCur / 20 == artCanvasScale - 1 && targetCur - targetCur / 20 * 20 == artCanvasScale - 1))
@@ -339,7 +339,7 @@ public class artCanvas : MonoBehaviour
                 }
                 
             }
-            //лево верх
+            //fown up
             if (forw == 3)
             {
                 if((targetCur < artCanvasScale && targetCur - targetCur / 20 * 20 == artCanvasScale - 1))
@@ -362,7 +362,7 @@ public class artCanvas : MonoBehaviour
             }
 
 
-            //наносим урон
+            //dealing damage
             _allColor2[color2Cur].target = targetCur;
 
             if (forw == 0)
@@ -400,16 +400,16 @@ public class artCanvas : MonoBehaviour
             }
 
 
-            //задаём позицию
+            //setting position
             _allColor2[color2Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor2[color2Cur].transform.localScale = scaleArt;
 
 
         }
-        //голубой
+        //light blue
         if (num == 3)
         {
             for (int i = 0; i < 50; i++)
@@ -432,19 +432,19 @@ public class artCanvas : MonoBehaviour
             }
 
 
-            //наносим урон
+            //dealing damage
             _allColor3[color3Cur].target = targetCur;
-            //задаём позицию
+            //setting position
             _allColor3[color3Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor3[color3Cur].transform.localScale = scaleArt;
 
-            //определяем движение позиции
+            //defining movement diraction
             int forw = 0;
             int[] queue = new int[] { -1, -1, -1, -1};
-            //верх
+            //up
             if (targetCur >= 20)
             {
                 queue[forw] = targetCur - 20;
@@ -465,7 +465,7 @@ public class artCanvas : MonoBehaviour
                 queue[forw] = targetCur - 1;
                 forw += 1;
             }
-            //создание дупликатов
+            //creating duplicates
             for (int i = 0; i < forw; i++)
             {
                 int ran = Random.Range(0, forw);
@@ -482,7 +482,7 @@ public class artCanvas : MonoBehaviour
 
 
         }
-        //фиолетовый
+        //purple
         if (num == 4)
         {
             for (int i = 0; i < 50; i++)
@@ -504,19 +504,19 @@ public class artCanvas : MonoBehaviour
                 }
             }
 
-            //определяем исключения для свдвига
+            //defining exceptions for position shifting
             if (targetCur < 20)
                 targetCur += 20;
             if (targetCur - targetCur / 20 * 20 == artCanvasScale - 1)
                 targetCur -= 1;
-            //задаём позицию
+            //setting position
             _allColor4[color4Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor4[color4Cur].transform.localScale = scaleArt;
 
-            //наносим урон
+            //dealing damage
             _allColor4[color4Cur].target = targetCur;
             _allColor4[color4Cur].target2 = targetCur - 20;
             _allColor4[color4Cur].target3 = targetCur + 1;
@@ -524,7 +524,7 @@ public class artCanvas : MonoBehaviour
             
 
         }
-        //розовый
+        //pink
         if (num == 5)
         {
             for (int i = 0; i < 50; i++)
@@ -547,10 +547,10 @@ public class artCanvas : MonoBehaviour
             }
 
 
-            //определяем движение позиции
+            //defining movement diraction
             int forw = 0;
             int[] queue = new int[] { -1, -1, -1, -1 };
-            //верх
+            //up
             if (targetCur >= 20)
             {
                 queue[forw] = targetCur - 20;
@@ -589,20 +589,20 @@ public class artCanvas : MonoBehaviour
                 _allColor5[color5Cur].transform.rotation = Quaternion.Euler(0, 0, 180);
             }
 
-            //задаём позицию
+            //setting position
             _allColor5[color5Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor5[color5Cur].transform.localScale = scaleArt;
 
-            //наносим урон
+            //dealing damage
             _allColor5[color5Cur].target = targetCur;
             _allColor5[color5Cur].targetNext = queue[ran];
             _allColor5[color5Cur].count = 3;
 
         }
-        //жёлтый
+        //yellow
         if (num == 6)
         {
             for (int i = 0; i < 50; i++)
@@ -624,7 +624,7 @@ public class artCanvas : MonoBehaviour
                 }
             }
 
-            //рандомим вращение
+            //random rotation
             int forw = Random.Range(0, 4);
             if (forw == 0)
                 _allColor6[color6Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -635,19 +635,19 @@ public class artCanvas : MonoBehaviour
             if (forw == 3)
                 _allColor6[color6Cur].transform.rotation = Quaternion.Euler(0, 0, -90);
 
-            //задаём позицию
+            //setting position
             _allColor6[color6Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor6[color6Cur].transform.localScale = scaleArt;
 
-            //наносим урон
+            //dealing damage
             _allColor6[color6Cur].target = targetCur;
 
 
         }
-        //синий
+        //blue
         if (num == 7)
         {
             for (int i = 0; i < 50; i++)
@@ -669,12 +669,12 @@ public class artCanvas : MonoBehaviour
                 }
             }
 
-            //рандомим вращение
+            //random rotation
             int forw = Random.Range(0, 4);
             if (forw == 0)
             {
                 _allColor7[color7Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
-                //определяем исключения для свдвига
+                //defining exceptions for position shifting
                 if (targetCur < 20)
                     targetCur += 20;
                 if (targetCur - targetCur / 20 * 20 == artCanvasScale - 1)
@@ -682,7 +682,7 @@ public class artCanvas : MonoBehaviour
                 if (targetCur - targetCur / 20 * 20 == artCanvasScale - 2)
                     targetCur -= 1;
 
-                //наносим урон
+                //dealing damage
                 _allColor7[color7Cur].target = targetCur;
                 _allColor7[color7Cur].target2 = targetCur - 20;
                 _allColor7[color7Cur].target3 = targetCur + 1;
@@ -693,14 +693,14 @@ public class artCanvas : MonoBehaviour
             if (forw == 1)
             {
                 _allColor7[color7Cur].transform.rotation = Quaternion.Euler(0, 0, 90);
-                //определяем исключения для свдвига
+                //defining exceptions for position shifting
                 if (targetCur < 20)
                     targetCur += 40;
                 if (targetCur < 40)
                     targetCur += 20;
                 if(targetCur - targetCur / 20 * 20 == 0)
                     targetCur += 1;
-                //наносим урон
+                //dealing damage
                 _allColor7[color7Cur].target = targetCur;
                 _allColor7[color7Cur].target2 = targetCur - 1;
                 _allColor7[color7Cur].target3 = targetCur - 20;
@@ -711,7 +711,7 @@ public class artCanvas : MonoBehaviour
             if (forw == 2)
             {
                 _allColor7[color7Cur].transform.rotation = Quaternion.Euler(0, 0, 180);
-                //определяем исключения для свдвига
+                //defining exceptions for position shifting
                 if (targetCur - targetCur / 20 * 20 == 0)
                     targetCur += 2;
                 if (targetCur - targetCur / 20 * 20 == 1)
@@ -719,7 +719,7 @@ public class artCanvas : MonoBehaviour
                 if (targetCur >= artCanvasScale * 20 - 20)
                     targetCur -= 20;
 
-                //наносим урон
+                //dealing damage
                 _allColor7[color7Cur].target = targetCur;
                 _allColor7[color7Cur].target2 = targetCur + 20;
                 _allColor7[color7Cur].target3 = targetCur - 1;
@@ -730,7 +730,7 @@ public class artCanvas : MonoBehaviour
             if (forw == 3)
             {
                 _allColor7[color7Cur].transform.rotation = Quaternion.Euler(0, 0, -90);
-                //определяем исключения для свдвига
+                //defining exceptions for position shifting
                 if (targetCur >= artCanvasScale * 20 - 20)
                     targetCur -= 40;
                 if (targetCur >= artCanvasScale * 20 - 40)
@@ -738,7 +738,7 @@ public class artCanvas : MonoBehaviour
                 if (targetCur - targetCur / 20 * 20 == artCanvasScale - 1)
                     targetCur -= 1;
 
-                //наносим урон
+                //dealing damage
                 _allColor7[color7Cur].target = targetCur;
                 _allColor7[color7Cur].target2 = targetCur + 1;
                 _allColor7[color7Cur].target3 = targetCur + 20;
@@ -748,9 +748,9 @@ public class artCanvas : MonoBehaviour
             }
             
             
-            //задаём позицию
+            //setting position
             _allColor7[color7Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor7[color7Cur].transform.localScale = scaleArt;
@@ -763,7 +763,7 @@ public class artCanvas : MonoBehaviour
 
 
         }
-        //лаймовый
+        //lime
         if (num == 8)
         {
             for (int i = 0; i < 100; i++)
@@ -784,7 +784,7 @@ public class artCanvas : MonoBehaviour
                     }
                 }
             }
-            //рандомим вращение
+            //random rotation
             int forw = Random.Range(0, 4);
             if (forw == 0)
                 _allColor8[color8Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -794,25 +794,25 @@ public class artCanvas : MonoBehaviour
                 _allColor8[color8Cur].transform.rotation = Quaternion.Euler(0, 0, 180);
             if (forw == 3)
                 _allColor8[color8Cur].transform.rotation = Quaternion.Euler(0, 0, -90);
-            //задаём позицию
+            //setting position
             _allColor8[color8Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor8[color8Cur].transform.localScale = scaleArt;
 
-            //наносим урон
+            //dealing damage
             _allColor8[color8Cur].target = targetCur;
 
 
-            //создаём ещё 6 копий
+            //creating 6 more copies
             for(int i = 0; i < 6; i++)
             {
                 ForColor8(playerManager.artLive[Random.Range(0, playerManager.artCount)], num);
             }
             
         }
-        //лиловый
+        //violet
         if (num == 9)
         {
             for (int i = 0; i < 50; i++)
@@ -845,14 +845,14 @@ public class artCanvas : MonoBehaviour
 
             _allColor9[color9Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
 
-            //наносим урон
+            //dealing damage
             _allColor9[color9Cur].target = targetCur;
             _allColor9[color9Cur].targetNext = targetCur;
             _allColor9[color9Cur].count = 4;
 
-            //задаём позицию
+            //setting postiion
             _allColor9[color9Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-            //задаём размер
+            //setting size
             scaleArt.x = 20 / artCanvasScale;
             scaleArt.y = 20 / artCanvasScale;
             _allColor9[color9Cur].transform.localScale = scaleArt;
@@ -867,7 +867,7 @@ public class artCanvas : MonoBehaviour
 
 
 
-    //создание дополнительной анимации
+    //creating additional animations
     public void ForColor3(int targetCur, int num)
     {
         for (int i = 0; i < 50; i++)
@@ -889,14 +889,14 @@ public class artCanvas : MonoBehaviour
             }
         }
 
-        //задаём позицию
+        //setting position
         _allColor3[color3Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-        //задаём размер
+        //setting size
         scaleArt.x = 20 / artCanvasScale;
         scaleArt.y = 20 / artCanvasScale;
         _allColor3[color3Cur].transform.localScale = scaleArt;
 
-        //наносим урон
+        //dealing damage
         _allColor3[color3Cur].target = targetCur;
     }
     public void ForColor5(int targetCur, int num)
@@ -920,10 +920,10 @@ public class artCanvas : MonoBehaviour
             }
         }
 
-        //определяем движение позиции
+        //defining movement diraction
         int forw = 0;
         int[] queue = new int[] { -1, -1, -1, -1 };
-        //верх
+        //up
         if (targetCur >= 20)
         {
             queue[forw] = targetCur - 20;
@@ -962,14 +962,14 @@ public class artCanvas : MonoBehaviour
             _allColor5[color5Cur].transform.rotation = Quaternion.Euler(0, 0, 180);
         }
 
-        //задаём позицию
+        //setting position      
         _allColor5[color5Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-        //задаём размер
+        //setting size
         scaleArt.x = 20 / artCanvasScale;
         scaleArt.y = 20 / artCanvasScale;
         _allColor5[color5Cur].transform.localScale = scaleArt;
 
-        //наносим урон
+        //dealing damage
         _allColor5[color5Cur].target = targetCur;
         _allColor5[color5Cur].targetNext = queue[ran];
         _allColor5[color5Cur].count = num - 1;
@@ -996,14 +996,14 @@ public class artCanvas : MonoBehaviour
             }
         }
 
-        //задаём позицию
+        //setting position
         _allColor8[color8Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-        //задаём размер
+        //setting size
         scaleArt.x = 20 / artCanvasScale;
         scaleArt.y = 20 / artCanvasScale;
         _allColor8[color8Cur].transform.localScale = scaleArt;
 
-        //наносим урон
+        //dealing damage
         _allColor8[color8Cur].target = targetCur;
     }
     public void ForColor9(int targetCur, int num)
@@ -1036,14 +1036,14 @@ public class artCanvas : MonoBehaviour
             _allColor9[color9Cur].transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-        //задаём позицию
+        //setting position
         _allColor9[color9Cur].transform.localPosition = _allFrameArt[targetCur].transform.localPosition;
-        //задаём размер
+        //setting size
         scaleArt.x = 20 / artCanvasScale;
         scaleArt.y = 20 / artCanvasScale;
         _allColor9[color9Cur].transform.localScale = scaleArt;
 
-        //наносим урон
+        //dealing damage
         _allColor9[color9Cur].target = targetCur;
         _allColor9[color9Cur].targetNext = targetCur;
         _allColor9[color9Cur].count = num;

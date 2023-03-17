@@ -81,7 +81,7 @@ public class playerManager : MonoBehaviour
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
 
-        //стоимость апгрейдов
+        //upgrade cost
         for (int i = 0; i < 10; i++)
         {
             upgradeCostStart[i] = artColorCostStart[i] * 100;
@@ -139,7 +139,7 @@ public class playerManager : MonoBehaviour
         //Prestige points
         prestigePointsCurrent = Math.Floor(Math.Pow(moneyTotal / 20000d, 1d / 1.01d));
 
-        //определение цели цветов
+        //deciding on color targets
         if (currentLevelState == 1)
         {
             for (int i = 0; i < colorAmount; i++)
@@ -151,7 +151,7 @@ public class playerManager : MonoBehaviour
                     {
                         artColorBar[i] = artColorBarMax[i];
 
-                        //выбираем цель
+                        //choosing a target
                         if(currentLevel == 0 && artCount == artCountMax)
                         {
                             _artCanvas.StartAnimationColor(i, 12);
@@ -164,7 +164,7 @@ public class playerManager : MonoBehaviour
                     }
                 }
             }
-            //конец
+            //end
             if(currentLevelState == 1 && artCount <= 0)
             {
                 currentLevelState = 2;
@@ -224,7 +224,7 @@ public class playerManager : MonoBehaviour
     {
         for(int i = 0; i < colorAmount; i++)
         {
-            //цена 
+            //cost 
             artColorCost[i] = artColorCostStart[i] * Math.Pow(artColorCostMnoj[i], artColorLevel[i]);
             artColorCost[i] = (Math.Pow(artColorCostMnoj[i], xBuy[xBuyTools]) - 1d) / (artColorCostMnoj[i] - 1d) * artColorCost[i];
             artColorCost[i] = Math.Round(artColorCost[i]);
@@ -232,27 +232,27 @@ public class playerManager : MonoBehaviour
             if (i == 0 && artColorLevel[i] == 0)
                 artColorCost[i] = 0;
 
-            //апгрейд
+            //upgrade
             artColorCost[i] *= upgradePower[i + 20];
             
 
-            //урон
+            //damage
             artColorDmg[i] = artColorDmgStart[i] + artColorDmgPerLevel[i] * (artColorLevel[i] - 1);
-            //апгрейд
+            //upgrade
             artColorDmg[i] *= upgradePower[i];
             //x25
             artColorDmg[i] *= Math.Pow(2, artColorLevel[i] / 25);
-            //престиж
+            //prestige
             artColorDmg[i] *= prestigePointsTotal / 100d + 1;
 
-            //крит шанс
+            //crit chance
             artColorCritC[i] = 0d;
-            //апгрейд
+            //upgrade
             artColorCritC[i] += upgradePower[i + 30];
 
-            //сила крита
+            //crit damage
             artColorCritM[i] = 1.5d;
-            //апгрейд
+            //upgrade
             artColorCritM[i] += upgradePower[i + 40];
 
         }
@@ -262,30 +262,30 @@ public class playerManager : MonoBehaviour
     {
         for (int i = 0; i < upgradeAmount; i++)
         {
-            //цена
+            //cost
             upgradeCost[i] = upgradeCostStart[i] * Math.Pow(upgradeCostMnoj[i], upgradeLevel[i]);
 
-            //урон
+            //damage
             if (i >= 0 && i < 10)
             {
                 upgradePower[i] = 1d * Math.Pow(2d, upgradeLevel[i]);
             }
-            //скорость
+            //speed
             if (i >= 10 && i < 20)
             {
                 upgradePower[i] = 1d * Math.Pow(0.85d, upgradeLevel[i]);
             }
-            //стоимость
+            //cost
             if (i >= 20 && i < 30)
             {
                 upgradePower[i] = 1d * Math.Pow(0.85d, upgradeLevel[i]);
             }
-            //крит шанс
+            //crit chance
             if (i >= 30 && i < 40)
             {
                 upgradePower[i] = upgradeLevel[i] * 3;
             }
-            //крит сила
+            //crit damage
             if (i >= 40 && i < 50)
             {
                 upgradePower[i] = upgradeLevel[i] * 0.15d;
@@ -293,7 +293,7 @@ public class playerManager : MonoBehaviour
         }
 
 
-        //доступ
+        //access
         for (int i = 0; i < 10; i++)
         {
             if(artColorLevel[i] > 0)
@@ -315,12 +315,12 @@ public class playerManager : MonoBehaviour
         }
 
 
-        //обнуление сортировки
+        //sorting reset
         for (int i = 0; i < upgradeAmount; i++)
         {
             upgradeSort[i] = -1;
         }
-        //сортировка
+        //sorting
         for (int i = 0; i < upgradeAmount; i++)
         {
             if(upgradeDost[i] == 1)
@@ -372,7 +372,7 @@ public class playerManager : MonoBehaviour
                 artHp[i] = artHpMax[i];
             }
         }
-        //заполняем массив с целями
+        //filling up target array
         artCount = 0;
         for (int i = 0; i < 400; i++)
         {
@@ -410,7 +410,7 @@ public class playerManager : MonoBehaviour
         for(int i = 0; i < 10; i++)
         {
             artColorBarMax[i] = artColorBarMaxStart[i];
-            //апгрейд
+            //upgrade
             artColorBarMax[i] *= (float)upgradePower[i + 10];
             if (artColorBar[i] > artColorBarMax[i])
                 artColorBar[i] = artColorBarMax[i];
@@ -444,7 +444,7 @@ public class playerManager : MonoBehaviour
 
 
 
-    //временное сокращение
+    //time reduction
     #region
     public static string Timer00(float timer)
     {
@@ -464,7 +464,7 @@ public class playerManager : MonoBehaviour
     }
     #endregion
 
-    //сокращение чисел
+    //number reduction
     #region
     public static int notation = 0;
 

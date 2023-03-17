@@ -11,7 +11,7 @@ public class color2 : MonoBehaviour
 
     public void DealDamage()
     {
-        //наносим урон
+        //dealing damage
         if (Random.Range(0f, 100f) <= playerManager.artColorCritC[2])
         {
             playerManager.artHp[target] -= playerManager.artColorDmg[2] * playerManager.artColorCritM[2];
@@ -25,7 +25,7 @@ public class color2 : MonoBehaviour
     }
     public void DealDamage2()
     {
-        //наносим урон
+        //dealing damage
         if (Random.Range(0f, 100f) <= playerManager.artColorCritC[2])
         {
             playerManager.artHp[target2] -= playerManager.artColorDmg[2] * playerManager.artColorCritM[2];

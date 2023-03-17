@@ -8,7 +8,7 @@ public class color0 : MonoBehaviour
 
     public void DealDamage()
     {
-        //наносим урон
+        //dealing damage
         if(Random.Range(0f,100f) <= playerManager.artColorCritC[0])
         {
             playerManager.artHp[target] -= playerManager.artColorDmg[0] * playerManager.artColorCritM[0];
